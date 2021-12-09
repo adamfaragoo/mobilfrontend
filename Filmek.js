@@ -1,5 +1,6 @@
 import React from 'react';
-import { FlatList, ActivityIndicator, Text, View,Image  } from 'react-native';
+import { FlatList, ActivityIndicator, Text, View,Image, ImageBackground  } from 'react-native';
+
 
 export default class Filmek extends React.Component {
 
@@ -39,9 +40,11 @@ export default class Filmek extends React.Component {
     }
 
     return(
-      <View style={{flex: 1, paddingTop:20,backgroundColor:"#262626"}}>
+      <View style={{flex: 1, paddingTop:20,backgroundColor:"#262626",}}>
+       
         <FlatList
           data={this.state.dataSource}
+          horizontal
           keyExtractor={({film_id}, index) => film_id}
           renderItem={({item}) =>
           <View style={{justifyContent:"center",alignItems:"center"}}>
@@ -54,6 +57,7 @@ export default class Filmek extends React.Component {
           </View>
           
         }
+        
         />
       </View>
     );
