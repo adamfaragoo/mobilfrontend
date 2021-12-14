@@ -9,14 +9,16 @@ export default class Kereses extends Component {
       cim: '',
       filmmufaj: '',
       filmmufajid:1,
-      services: [ 'one', 'two', 'three', 'four', 'five' ]
+      akttema:0,  
+      dataSource:[],
+      dataSource2:[],    
       
     };
   }
   
   
   componentDidMount(){
-    fetch('http://192.168.1.90:3000/mufajok')
+     fetch('http://172.16.0.29:3000/mufajok')
       .then((response) => response.json())
       .then((responseJson) => {
 
@@ -26,14 +28,19 @@ export default class Kereses extends Component {
         }, function(){
 
         });
+        this.setState({akttema:this.state.dataSource2[0].mufaj_id})
+        this.kivalaszt(this.state.akttema)
 
       })
+
+      
       .catch((error) =>{
         console.error(error);
       });
+  
 
 
-     fetch('http://192.168.1.90:3000/filmek')
+     fetch('http://172.16.0.29:3000/filmek')
       .then((response) => response.json())
       .then((responseJson) => {
 
@@ -51,6 +58,33 @@ export default class Kereses extends Component {
 
   }
   
+  kivalaszt = async(szam)=>{
+    //alert(szam)
+    this.setState({akttema:szam})
+    let bemenet={
+      bevitel2:szam
+    }
+    return fetch('http://172.16.0.29:3000/filmszures', {
+      method: "POST",
+      body: JSON.stringify(bemenet),
+      headers: {"Content-type": "application/json; charset=UTF-8"}
+      } )
+      .then((response) => response.json())
+      .then((responseJson) => {
+
+        this.setState({
+          isLoading: false,
+          dataSource: responseJson,
+        }, function(){
+
+        });
+
+        
+      })
+      .catch((error) =>{
+        console.error(error);
+      });
+  }
   
 
   kereses=async () =>{
@@ -59,7 +93,7 @@ export default class Kereses extends Component {
 
 
      }
-     fetch('http://192.168.1.90:3000/kereses', {
+     fetch('http://172.16.0.29:3000/kereses', {
       method: "POST",
       body: JSON.stringify(bemenet),
       headers: {"Content-type": "application/json; charset=UTF-8"}
@@ -80,7 +114,30 @@ export default class Kereses extends Component {
         console.error(error);
       });
  
-   }
+  
+    }
+   
+  osszes= async() =>
+  {
+    fetch('http://172.16.0.29:3000/filmek')
+      .then((response) => response.json())
+      .then((responseJson) => {
+
+        this.setState({
+          isLoading: false,
+          dataSource: responseJson,
+        }, function(){
+
+        });
+
+      })
+      .catch((error) =>{
+        console.error(error);
+      });
+
+
+  }
+   
 
   render() {
     /*let serviceItems = this.state.services.map( (s, i) => {
@@ -89,9 +146,7 @@ export default class Kereses extends Component {
     
     return (
   
-    <View style={{flex:1,backgroundColor:"#262626"}}>
-      <ImageBackground source={require('./kepek/hatter.jpg')} style={{width: '100%', height: '100%', flex:1}}>
-      <View style={{padding: 10, alignItems:"center", backgroundColor:"#262626", }}>
+    <View style={{flex:1,backgroundColor:"#262626", alignItems:'center'}}>
       <View style={{flexDirection:'row'}}>
         <TextInput
         placeholderTextColor="black"
@@ -107,9 +162,39 @@ export default class Kereses extends Component {
             <Text style={{textAlign:"center", fontSize:15,paddingTop:6}}>Keresés</Text>
           </View>
         </TouchableOpacity>
+ 
         </View>
+        <View style={{height:50, marginBottom:10,flexDirection:'row', }}>
+        <TouchableOpacity
+            style={{borderWidth:1,borderRadius:10,width:80,height:30,margin:5,backgroundColor:"#2596be",marginLeft:16}}
+            onPress={async ()=>this.osszes()}
+            >
+          <Text style={{textAlign:"center",fontSize:15,color:"white", paddingTop:3}}>Összes</Text>
+          </TouchableOpacity>
+        <FlatList
+          data={this.state.dataSource2}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          style={{marginRight:17, marginLeft:10}}
+          renderItem={({item}) => 
+          <View style={{alignItems:"center",marginTop:10,flexDirection:'row',marginBottom:17 }}>
+            <TouchableOpacity
+            style={{borderWidth:1,borderRadius:10,width:130,height:29,margin:5,backgroundColor:"#262626", borderColor:"white", }}
+            onPress={async ()=>this.kivalaszt(item.mufaj_id)}
+            >
+          <Text style={{textAlign:"center",fontSize:20,color:"white"}}>{item.mufaj_nev} </Text>
+          </TouchableOpacity>
+          </View>
+        
+        }
+          keyExtractor={({mufaj_id}, index) => mufaj_id}
+        />
+      
+        
+        </View>      
 
 
+        
 
         
 
@@ -120,11 +205,13 @@ export default class Kereses extends Component {
           data={this.state.dataSource}      
           keyExtractor={({film_id}, index) => film_id}
           renderItem={({item}) =>
+          
           <View style={{justifyContent:"center",alignItems:"center", paddingBottom: 20, }}>
             <Image 
             source={{uri:'http://172.16.0.29:3000/'+item.film_kep}}
             style={{width:175,height:250,margin:5,borderRadius:15,}}
             />
+            <Text style={{color:"white",margin:5,width:160, height:35, textAlign:"center"}}>{item.film_cim}</Text>
             
    
           </View>        
@@ -132,9 +219,10 @@ export default class Kereses extends Component {
         
         />
 
+          
       </View>
-      </ImageBackground>
-      </View>
+      
+     
       
       
     );

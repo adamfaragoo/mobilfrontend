@@ -36,7 +36,7 @@ export default function App() {
       <Drawer.Navigator initialRouteName="Keződoldal">
         <Drawer.Screen name="Keződoldal" component={Kezdooldal} options={{headerStyle:{backgroundColor: '#2596be'}}} />
         <Drawer.Screen name="Filmek" component={filmek_lap} options={{headerStyle:{backgroundColor: '#2596be'}}} />
-        <Drawer.Screen name="Kereses" component={kereses_lap} options={{headerStyle:{backgroundColor: '#2596be'}}} />
+        <Drawer.Screen name="Keresés" component={kereses_lap} options={{headerStyle:{backgroundColor: '#2596be'}}} />
       </Drawer.Navigator>
     </NavigationContainer>
   );

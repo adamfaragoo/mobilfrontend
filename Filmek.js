@@ -10,7 +10,7 @@ export default class Filmek extends React.Component {
   }
 
   componentDidMount(){
-    return fetch('http://192.168.1.90:3000/filmek')
+    return fetch('http://172.16.0.29:3000/filmek')
       .then((response) => response.json())
       .then((responseJson) => {
 
@@ -52,7 +52,7 @@ export default class Filmek extends React.Component {
           renderItem={({item}) =>
           <View style={{justifyContent:"center",alignItems:"center", flexDirection:'column', flex:1,marginTop:400}}>
             <Image 
-            source={{uri:'http://192.168.1.90:3000/'+item.film_kep}}
+            source={{uri:'http://172.16.0.29:3000/'+item.film_kep}}
             style={{width:175,height:250,margin:5,borderRadius:15}}
             />
             <Text style={{color:"white",margin:5}}>{item.film_cim} ({item.film_ev})</Text>
