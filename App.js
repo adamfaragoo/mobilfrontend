@@ -1,43 +1,42 @@
 import * as React from 'react';
-import { Button, View } from 'react-native';
-import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
-import Filmek from './Filmek';
-import Kereses from './Kereses';
-
-function Kezdooldal({ navigation }) {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' , backgroundColor:"#262626"}}>
-      <Button
-        onPress={() => navigation.navigate('Filmek')}
-        title="Go to notifications"
-      />
-    </View>
-  );
-}
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { createStackNavigator, CreateStackNavigator } from '@react-navigation/stack';
+import Kereses from './Kereses.js'
+import Header from './header.js'
 
 
-function filmek_lap({ navigation }) {
-  return (
-    <Filmek/>
-    );
-};
-function kereses_lap({ navigation }) {
-  return (
-    <Kereses/>
-    );
-};
 
 const Drawer = createDrawerNavigator();
+const Stack = createStackNavigator();
 
-export default function App() {
-  return (
-    <NavigationContainer>
-      <Drawer.Navigator initialRouteName="Keződoldal">
-        <Drawer.Screen name="Keződoldal" component={Kezdooldal} options={{headerStyle:{backgroundColor: '#2596be'}}} />
-        <Drawer.Screen name="Filmek" component={filmek_lap} options={{headerStyle:{backgroundColor: '#2596be'}}} />
-        <Drawer.Screen name="Keresés" component={kereses_lap} options={{headerStyle:{backgroundColor: '#2596be'}}} />
-      </Drawer.Navigator>
-    </NavigationContainer>
-  );
+export default class App extends React.Component{
+  constructor(props) {
+    super(props);
+  }
+  createHomeStack = () =>
+  <Stack.Navigator screenOptions={{
+    headerStyle:{backgroundColor:"#2596be"}
+    }} >
+    <Stack.Screen
+    name="Filmek"
+    component={Kereses}
+    options={{
+    headerTitle:()=><Header/>
+  }}
+    />
+  </Stack.Navigator>
+
+
+  render(){
+
+    return(
+      <NavigationContainer>
+        <Drawer.Navigator initialRouteName='Filmek' >
+          <Drawer.Screen name="Film" children={this.createHomeStack} options={{headerShown:false}}  />
+        </Drawer.Navigator>
+      </NavigationContainer>
+
+    );
+  }
 }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Text, TextInput, View, FlatList, Image, TouchableOpacity,  ImageBackground } from 'react-native';
+import { Text, TextInput, View, FlatList, Image, TouchableOpacity,  TouchableHighlight, StyleSheet  } from 'react-native';
+import { color } from 'react-native-reanimated';
 
 
 export default class Kereses extends Component {
@@ -12,6 +13,7 @@ export default class Kereses extends Component {
       akttema:0,  
       dataSource:[],
       dataSource2:[],    
+      aktmufaj:0,
       
     };
   }
@@ -28,8 +30,7 @@ export default class Kereses extends Component {
         }, function(){
 
         });
-        this.setState({akttema:this.state.dataSource2[0].mufaj_id})
-        this.kivalaszt(this.state.akttema)
+        
 
       })
 
@@ -137,7 +138,8 @@ export default class Kereses extends Component {
 
 
   }
-   
+ 
+  
 
   render() {
     /*let serviceItems = this.state.services.map( (s, i) => {
@@ -159,30 +161,36 @@ export default class Kereses extends Component {
         <TouchableOpacity 
           onPress={async ()=>this.kereses()}>
           <View style={{width:100,backgroundColor:"#2596be", borderRadius:10,padding:5,marginTop:20, height:45,marginRight:20}}>
-            <Text style={{textAlign:"center", fontSize:15,paddingTop:6}}>Keresés</Text>
+        
+            <Text style={{textAlign:"center", fontSize:15,paddingTop:6, color:'white'}}>Keresés</Text>
           </View>
         </TouchableOpacity>
  
         </View>
         <View style={{height:50, marginBottom:10,flexDirection:'row', }}>
+
         <TouchableOpacity
-            style={{borderWidth:1,borderRadius:10,width:80,height:30,margin:5,backgroundColor:"#2596be",marginLeft:16}}
+            style={{borderWidth:1,borderRadius:10,width:80,height:30,margin:5,width:100, backgroundColor:"#2596be",marginLeft:16}}
             onPress={async ()=>this.osszes()}
             >
-          <Text style={{textAlign:"center",fontSize:15,color:"white", paddingTop:3}}>Összes</Text>
+          <Text style={{textAlign:"center",fontSize:15,color:"white", paddingTop:3,}}>Összes</Text>
           </TouchableOpacity>
+
         <FlatList
           data={this.state.dataSource2}
           horizontal
           showsHorizontalScrollIndicator={false}
           style={{marginRight:17, marginLeft:10}}
           renderItem={({item}) => 
-          <View style={{alignItems:"center",marginTop:10,flexDirection:'row',marginBottom:17 }}>
+          <View style={{alignItems:"center",marginTop:10,flexDirection:'row',marginBottom:19 }}>
+           
             <TouchableOpacity
-            style={{borderWidth:1,borderRadius:10,width:130,height:29,margin:5,backgroundColor:"#262626", borderColor:"white", }}
+            style={{borderWidth:1,borderRadius:10,width:100,height:27,margin:5,backgroundColor:"#262626", borderColor:"white", }}
             onPress={async ()=>this.kivalaszt(item.mufaj_id)}
             >
-          <Text style={{textAlign:"center",fontSize:20,color:"white"}}>{item.mufaj_nev} </Text>
+            
+           
+          <Text style={{textAlign:"center",fontSize:15,color:"white", marginTop:1}}>{item.mufaj_nev} </Text>
           </TouchableOpacity>
           </View>
         
@@ -193,12 +201,6 @@ export default class Kereses extends Component {
         
         </View>      
 
-
-        
-
-        
-
-
     <FlatList
           showsVerticalScrollIndicator={false}
           numColumns={2}
@@ -207,12 +209,14 @@ export default class Kereses extends Component {
           renderItem={({item}) =>
           
           <View style={{justifyContent:"center",alignItems:"center", paddingBottom: 20, }}>
+            <TouchableOpacity>
             <Image 
             source={{uri:'http://172.16.0.29:3000/'+item.film_kep}}
             style={{width:175,height:250,margin:5,borderRadius:15,}}
             />
-            <Text style={{color:"white",margin:5,width:160, height:35, textAlign:"center"}}>{item.film_cim}</Text>
             
+            <Text style={{color:"white",margin:5,width:160, height:35, textAlign:"center"}}>{item.film_cim}</Text>
+            </TouchableOpacity>
    
           </View>        
         }
@@ -230,14 +234,16 @@ export default class Kereses extends Component {
 }
 
 /*
-  <View style={{}}>
-                  <Picker
-                    selectedValue={this.state.selectedService}
-                    onValueChange={ (service) => ( this.setState({selectedService:service}) ) } >
-
-                    {serviceItems}
-
-                  </Picker>
-        </View>*/
-
-//<Text style={{color:"white",margin:5}}>{item.film_cim} ({item.film_ev})</Text>
+   <{this.state.aktmufaj}==item.mufaj_id ? 
+            <TouchableOpacity
+            style={{borderWidth:1,borderRadius:10,width:100,height:27,margin:5,backgroundColor:"red", borderColor:"white", }}
+            onPress={async ()=>this.kivalaszt(item.mufaj_id)}
+            >
+            :
+            <TouchableOpacity
+            style={{borderWidth:1,borderRadius:10,width:100,height:27,margin:5,backgroundColor:"#262626", borderColor:"white", }}
+            onPress={async ()=>this.kivalaszt(item.mufaj_id)}
+            >
+            
+            >
+*/
