@@ -1,14 +1,17 @@
 import * as React from 'react';
+import {View} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { createDrawerNavigator } from '@react-navigation/drawer';
-import { createStackNavigator, CreateStackNavigator } from '@react-navigation/stack';
+import { createStackNavigator,  } from '@react-navigation/stack';
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import { Ionicons,MaterialCommunityIcons } from "@expo/vector-icons";
 import Kereses from './Kereses.js'
 import Header from './header.js'
 
 
 
-const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
+const BottomTab = createMaterialBottomTabNavigator();
+
 
 export default class App extends React.Component{
   constructor(props) {
@@ -32,9 +35,14 @@ export default class App extends React.Component{
 
     return(
       <NavigationContainer>
-        <Drawer.Navigator initialRouteName='Filmek' >
-          <Drawer.Screen name="Film" children={this.createHomeStack} options={{headerShown:false}}  />
-        </Drawer.Navigator>
+        <BottomTab.Navigator barStyle={{backgroundColor:"gray"}}>
+          <BottomTab.Screen name="Film" component={this.createHomeStack} options={{
+            tabBarIcon: ({focused}) => 
+            (<View>
+              <MaterialCommunityIcons name={focused ? 'movie-open': 'movie-open-outline'} size={25} ></MaterialCommunityIcons>
+            </View>)
+          }}/>
+        </BottomTab.Navigator>
       </NavigationContainer>
 
     );
