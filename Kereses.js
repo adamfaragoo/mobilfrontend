@@ -14,7 +14,7 @@ export default class Kereses extends Component {
       dataSource:[],
       dataSource2:[],    
       aktmufaj:0,
-      
+      asd:1,
     };
   }
   
