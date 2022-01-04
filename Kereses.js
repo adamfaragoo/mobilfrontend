@@ -209,7 +209,14 @@ export default class Kereses extends Component {
           renderItem={({item}) =>
           
           <View style={{justifyContent:"center",alignItems:"center", paddingBottom: 20, }}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={async()=>this.props.navigation.navigate('Filmsajat',
+            {
+            filmid:item.film_id,
+            filmnev:item.film_cim,
+            filmev:item.film_ev,
+            filmhossz:item.film_hossz,
+            filmleiras:item.film_leiras
+            })}>
             <Image 
             source={{uri:'http://172.16.0.29:3000/'+item.film_kep}}
             style={{width:175,height:250,margin:5,borderRadius:15,}}
