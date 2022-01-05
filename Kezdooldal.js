@@ -2,6 +2,7 @@ import React from 'react';
 import { FlatList, ActivityIndicator, Text, View,Image, ImageBackground  } from 'react-native';
 
 
+
 export default class Filmek extends React.Component {
 
   constructor(props){
