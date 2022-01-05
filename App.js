@@ -2,8 +2,8 @@ import * as React from 'react';
 import {View} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator,  } from '@react-navigation/stack';
-import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { Ionicons,MaterialCommunityIcons,MaterialIcons } from "@expo/vector-icons";
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import Kereses from './Kereses.js'
 import Header from './header.js'
 import Header2 from './header2.js'
