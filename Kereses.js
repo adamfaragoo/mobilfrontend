@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Text, TextInput, View, FlatList, Image, TouchableOpacity,  TouchableHighlight, StyleSheet  } from 'react-native';
 import { color } from 'react-native-reanimated';
+import { Ionicons,MaterialCommunityIcons,MaterialIcons } from "@expo/vector-icons";
 
 
 export default class Kereses extends Component {
@@ -160,9 +161,9 @@ export default class Kereses extends Component {
 
         <TouchableOpacity 
           onPress={async ()=>this.kereses()}>
-          <View style={{width:100,backgroundColor:"#2596be", borderRadius:10,padding:5,marginTop:20, height:45,marginRight:20}}>
+          <View style={{width:45,backgroundColor:"#2596be", borderRadius:10,padding:5,marginTop:20, height:45,marginRight:20}}>
         
-            <Text style={{textAlign:"center", fontSize:15,paddingTop:6, color:'white'}}>Keresés</Text>
+          <MaterialIcons name='search' size={35}/>
           </View>
         </TouchableOpacity>
  

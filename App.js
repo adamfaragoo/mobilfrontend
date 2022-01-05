@@ -6,7 +6,13 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 import { Ionicons,MaterialCommunityIcons,MaterialIcons } from "@expo/vector-icons";
 import Kereses from './Kereses.js'
 import Header from './header.js'
+import Header2 from './header2.js'
+import Filmek from './Filmek.js';
 import Filmsajat from './Filmsajat.js'
+import Sorozat from './Sorozat.js';
+import Sorozatsajat from './Sorozatsajat.js'
+import Ajanlas from './Ajanlas.js'
+import Kezdooldal from './Kezdooldal.js'
 
 
 
@@ -18,6 +24,7 @@ export default class App extends React.Component{
   constructor(props) {
     super(props);
   }
+
   createHomeStack = () =>
   <Stack.Navigator screenOptions={{
     headerStyle:{backgroundColor:"#2596be"}
@@ -32,6 +39,45 @@ export default class App extends React.Component{
     <Stack.Screen name='Filmsajat' component={Filmsajat} options={({route})=>({title: route.params.filmnev})}/>
   </Stack.Navigator>
 
+createSorozatStack = () =>
+<Stack.Navigator screenOptions={{
+  headerStyle:{backgroundColor:"#2596be"}
+  }} >
+  <Stack.Screen
+  name="Sorozatok"
+  component={Sorozat}
+  options={{
+  headerTitle:()=><Header/>
+}
+}
+  />
+  <Stack.Screen name='Sorozatsajat' component={Sorozatsajat} options={({ route }) => ({ title: route.params.sorozatnev })}/>
+</Stack.Navigator>
+
+createAjanlasStack = () =>
+  <Stack.Navigator screenOptions={{
+  headerStyle:{backgroundColor:"#2596be"}
+  }} >
+  <Stack.Screen
+  name="Ajanlas"
+  component={Ajanlas}
+  />
+  </Stack.Navigator>
+
+  createKezdooldalStack = () =>
+  <Stack.Navigator screenOptions={{
+  headerStyle:{backgroundColor:"#2596be"}
+  }} >
+  <Stack.Screen
+  name="Kezdőoldal"
+  component={Kezdooldal}
+  options={{
+    headerTitle:()=><Header2/>
+  }
+  }
+  />
+  </Stack.Navigator>
+
 
   render(){
 
@@ -39,14 +85,14 @@ export default class App extends React.Component{
       <NavigationContainer>
         <BottomTab.Navigator barStyle={{backgroundColor:"lightgrey"}}>
           
-           <BottomTab.Screen name="Kezdőoldal" component={this.createHomeStack} options={{
+           <BottomTab.Screen name="Kezdőoldal" component={this.createKezdooldalStack} options={{
             tabBarIcon: ({focused}) => 
             (<View>
               <Ionicons name={focused ? 'home-sharp': 'home-outline'} size={25} ></Ionicons>
             </View>)
           }}/>
           
-           <BottomTab.Screen name="Sorozat" component={this.createHomeStack} options={{
+           <BottomTab.Screen name="Sorozat" component={this.createSorozatStack} options={{
             tabBarIcon: ({focused}) => 
             (<View>
               <Ionicons name={focused ? 'tv-sharp': 'tv-outline'} size={25} ></Ionicons>
@@ -58,7 +104,7 @@ export default class App extends React.Component{
               <MaterialCommunityIcons name={focused ? 'movie-open': 'movie-open-outline'} size={25} ></MaterialCommunityIcons>
             </View>)
           }}/>
-           <BottomTab.Screen name="Ajánlás" component={this.createHomeStack} options={{
+           <BottomTab.Screen name="Ajánlás" component={this.createAjanlasStack} options={{
             tabBarIcon: ({focused}) => 
             (<View>
               <MaterialIcons name={"recommend"} size={25} ></MaterialIcons>
