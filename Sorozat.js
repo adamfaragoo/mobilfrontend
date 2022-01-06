@@ -1,6 +1,7 @@
 import React from 'react';
 import { FlatList, ActivityIndicator, Text, View,Image,Button,TouchableOpacity,Modal,Pressable,StyleSheet,TextInput  } from 'react-native';
 import { MaterialIcons } from "@expo/vector-icons";
+ 
 
 
 export default class Sorozat extends React.Component {
@@ -216,7 +217,7 @@ export default class Sorozat extends React.Component {
             sorozatepizod:item.sorozat_epizodszam
             })}>
             <Image 
-            source={{uri:'http://172.16.0.11:3000/'+item.sorozat_kep}}
+            source={{uri:'http://172.16.0.29:3000/'+item.sorozat_kep}}
             style={{width:150,height:230,marginRight:10,marginTop:10,marginLeft:10,borderRadius:15}}
             />
             <Text style={{color:"white",marginLeft:15,marginTop:5,fontSize:16,fontWeight:"bold",width:155}}>{item.sorozat_cim}</Text>

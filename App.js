@@ -7,6 +7,7 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 import Kereses from './Kereses.js'
 import Header from './header.js'
 import Header2 from './header2.js'
+import Header3 from './header3.js'
 import Filmek from './Filmek.js';
 import Filmsajat from './Filmsajat.js'
 import Sorozat from './Sorozat.js';
@@ -47,7 +48,7 @@ createSorozatStack = () =>
   name="Sorozatok"
   component={Sorozat}
   options={{
-  headerTitle:()=><Header/>
+  headerTitle:()=><Header3/>
 }
 }
   />

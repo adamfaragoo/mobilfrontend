@@ -16,7 +16,7 @@ export default class Sorozatsajat extends Component {
     let bemenet1 = {
       bevitel3:this.props.route.params.sorozatid
     }
-    fetch('http://172.16.0.11:3000/kommentek', {
+    fetch('http://172.16.0.29:3000/kommentek', {
       method: "POST",
       body: JSON.stringify(bemenet1),
       headers: {"Content-type": "application/json; charset=UTF-8"}
@@ -35,7 +35,7 @@ export default class Sorozatsajat extends Component {
         console.error(error);
       });
 
-      fetch('http://172.16.0.11:3000/sorozatkep', {
+      fetch('http://172.16.0.29:3000/sorozatkep', {
       method: "POST",
       body: JSON.stringify(bemenet1),
       headers: {"Content-type": "application/json; charset=UTF-8"}

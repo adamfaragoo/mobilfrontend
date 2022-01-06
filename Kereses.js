@@ -149,11 +149,11 @@ export default class Kereses extends Component {
     
     return (
   
-    <View style={{flex:1,backgroundColor:"#262626", alignItems:'center'}}>
+    <View style={{flex:1,backgroundColor:"#262626", alignItems:'center', paddingBottom:10, paddingTop:20, justifyContent:'center', overflow:'hidden'}}>
       <View style={{flexDirection:'row'}}>
         <TextInput
         placeholderTextColor="black"
-        style={{height: 45,backgroundColor:"#DCDCDC", borderRadius:10, padding:10, width:240,margin:20, textAlign:"center", }}
+        style={{height: 45,backgroundColor:"#DCDCDC", borderRadius:10, padding:10, width:240,margin:20,marginRight:10, textAlign:"center", }}
         placeholder="Keresés"
         onChangeText={(cim) => this.setState({cim})}
         value={this.state.cim}
@@ -209,7 +209,7 @@ export default class Kereses extends Component {
           keyExtractor={({film_id}, index) => film_id}
           renderItem={({item}) =>
           
-          <View style={{justifyContent:"center",alignItems:"center", paddingBottom: 20, }}>
+          <View>
             <TouchableOpacity onPress={async()=>this.props.navigation.navigate('Filmsajat',
             {
             filmid:item.film_id,
@@ -220,10 +220,10 @@ export default class Kereses extends Component {
             })}>
             <Image 
             source={{uri:'http://172.16.0.29:3000/'+item.film_kep}}
-            style={{width:175,height:250,margin:5,borderRadius:15,}}
+            style={{width:150,height:230,marginRight:10,marginTop:10,marginLeft:10,borderRadius:15}}
             />
-            
-            <Text style={{color:"white",margin:5,width:160, height:35, textAlign:"center"}}>{item.film_cim}</Text>
+            <Text style={{color:"white",marginLeft:15,marginTop:5,fontSize:16,fontWeight:"bold",width:155}}>{item.film_cim}</Text>
+            <Text style={{color:"white",marginLeft:15,marginTop:5,fontSize:12,width:50,borderWidth:1,borderRadius:5,borderColor:"white",textAlign:"center"}}>{item.mufaj_nev}</Text>
             </TouchableOpacity>
    
           </View>        
@@ -241,17 +241,3 @@ export default class Kereses extends Component {
   }
 }
 
-/*
-   <{this.state.aktmufaj}==item.mufaj_id ? 
-            <TouchableOpacity
-            style={{borderWidth:1,borderRadius:10,width:100,height:27,margin:5,backgroundColor:"red", borderColor:"white", }}
-            onPress={async ()=>this.kivalaszt(item.mufaj_id)}
-            >
-            :
-            <TouchableOpacity
-            style={{borderWidth:1,borderRadius:10,width:100,height:27,margin:5,backgroundColor:"#262626", borderColor:"white", }}
-            onPress={async ()=>this.kivalaszt(item.mufaj_id)}
-            >
-            
-            >
-*/
