@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, Text, View, TouchableOpacity, Modal, Button, show,} from 'react-native';
 import {MaterialIcons} from '@expo/vector-icons';
 import { NavigationContainer,DrawerActions } from '@react-navigation/native';
-import { Ionicons } from "@expo/vector-icons";
+import { Ionicons, MaterialCommunityIcons,AntDesign,Entypo } from "@expo/vector-icons";
 
 
 
@@ -35,8 +35,24 @@ export default class Header2 extends React.Component{
             >
             <View style={{backgroundColor:"#000000aa", flex:1}}>
                 <View style={{backgroundColor:"white",margin:50, padding:20, borderRadius:10}}>
-                <Text style={{fontSize:20,}}>Modal text </Text>
+                <Text style={{fontSize:20, textAlign:'center', fontWeight:"bold"}}>Készítette:</Text>
 
+                <View style={{flexDirection:"row", alignItems:'center',marginRight:40, marginLeft:25}}>
+                <Entypo name="user" size={24} color="black" style={{marginTop:25, marginRight:10}}/>
+                <Text style={{fontSize:20, textAlign:'center', marginTop:30}}>Ákos Zsombor</Text>
+                </View>
+
+                <View style={{flexDirection:"row", alignItems:'center',marginRight:40, marginLeft:25}}>
+                <Entypo name="user" size={24} color="black" style={{marginTop:5, marginRight:10}}/>
+                <Text style={{fontSize:20, textAlign:'center', marginTop:10}}>Faragó Ádám</Text>
+                </View>
+                <View>
+                <MaterialCommunityIcons name="copyright" size={20} color="black" style={{top:87,position:'absolute'}} />
+                <Text style={{fontSize:10, textAlign:'center', top:90,position:'absolute', left:20}}>2022</Text>
+
+                </View>
+                
+                
                 <TouchableOpacity onPress={()=>{this.setState({show:false})}}>
                 <View style={{alignItems:"center", marginTop:70,}}>
                 <Ionicons name="close-circle" size={30} color="black" />
