@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Text, TextInput, View, FlatList, Image, TouchableOpacity,  TouchableHighlight, StyleSheet  } from 'react-native';
 import { color } from 'react-native-reanimated';
 import { Ionicons,MaterialCommunityIcons,MaterialIcons } from "@expo/vector-icons";
+import { Picker } from '@react-native-picker/picker'
 
 
 export default class Kereses extends Component {
@@ -15,7 +16,8 @@ export default class Kereses extends Component {
       dataSource:[],
       dataSource2:[],    
       aktmufaj:0,
-      asd:1,
+      evszamok:[],
+      pickervalue:0,
     };
   }
   
@@ -49,6 +51,7 @@ export default class Kereses extends Component {
         this.setState({
           isLoading: false,
           dataSource: responseJson,
+          evszamok:responseJson,
         }, function(){
 
         });
@@ -139,13 +142,43 @@ export default class Kereses extends Component {
 
 
   }
+
+  evszures = (itemValue) =>{
+    this.setState({pickervalue:itemValue})
+
+    let bemenet={
+      bevitel1:itemValue
+    }
+    return fetch('http://172.16.0.29:3000/evszures', {
+      method: "POST",
+      body: JSON.stringify(bemenet),
+      headers: {"Content-type": "application/json; charset=UTF-8"}
+      } )
+      .then((response) => response.json())
+      .then((responseJson) => {
+
+        this.setState({
+          isLoading: false,
+          dataSource: responseJson,
+        }, function(){
+
+        });
+
+        
+      })
+      .catch((error) =>{
+        console.error(error);
+      });
+  }
  
   
 
   render() {
-    /*let serviceItems = this.state.services.map( (s, i) => {
-      return <Picker.Item key={i} value={s} label={s} />
-  });*/
+    let evszam = this.state.evszamok.map((item,index)=>{
+      return(
+        <Picker.Item label={item.film_ev} value={index}/>
+      )
+      })
     
     return (
   
@@ -167,6 +200,18 @@ export default class Kereses extends Component {
           </View>
         </TouchableOpacity>
  
+        <View style={{borderWidth:2,borderColor:"white",borderRadius:5}}>
+        <Picker
+          selectedValue={this.state.pickervalue}
+          style={{width: 100,height:10,color:"white",textAlignVertical:"center" }}
+          onValueChange={(itemValue)=>this.evszures(itemValue)}
+        >
+         {evszam}
+
+        </Picker>
+        </View>
+
+
         </View>
         <View style={{height:50, marginBottom:10,flexDirection:'row', }}>
 
