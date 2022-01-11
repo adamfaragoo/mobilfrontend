@@ -78,7 +78,7 @@ export default class Filmek extends React.Component {
             source={{uri:'http://172.16.0.29:3000/'+item.sorozat_kep}}
             style={{width:175,height:250,margin:5,borderRadius:15}}
             />
-            <Text style={{color:"white",margin:5}}>{item.sorozat_cim}</Text>
+            <Text style={{color:"white",fontSize:13,fontWeight:"bold",textAlign:"center"}}>{item.sorozat_cim}</Text>
             
           </View>
   
@@ -99,7 +99,7 @@ export default class Filmek extends React.Component {
             source={{uri:'http://172.16.0.29:3000/'+item.film_kep}}
             style={{width:175,height:250,margin:5,borderRadius:15}}
             />
-            <Text style={{color:"white",margin:5}}>{item.film_cim}</Text>
+            <Text style={{color:"white",fontSize:13,fontWeight:"bold",textAlign:"center"}}>{item.film_cim}</Text>
             
           </View>
   
