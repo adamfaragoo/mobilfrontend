@@ -65,7 +65,7 @@ export default class Filmek extends React.Component {
       
       <View style={{flex: 1, paddingTop:20,backgroundColor:"#262626", }}>
         
-
+      <Text style={{color:'white', fontSize:25, textAlign:'center', fontWeight:'bold', marginBottom:15}}>Legjobb sorozatok</Text>
         <FlatList 
           showsHorizontalScrollIndicator={false}
           data={this.state.dataSource2}
@@ -85,6 +85,7 @@ export default class Filmek extends React.Component {
         }
         />
 
+      <Text style={{color:'white', fontSize:25, textAlign:'center', fontWeight:'bold', marginBottom:15}}>Legjobb filmek</Text>
 
         <FlatList 
           showsHorizontalScrollIndicator={false}

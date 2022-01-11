@@ -175,11 +175,7 @@ export default class Kereses extends Component {
   
 
   render() {
-    let evszam = this.state.evszamok.map((item,index)=>{
-      return(
-        <Picker.Item label={item.film_ev} value={index}/>
-      )
-      })
+    
     
     return (
   
@@ -201,16 +197,7 @@ export default class Kereses extends Component {
           </View>
         </TouchableOpacity>
  
-        <View style={{borderWidth:2,borderColor:"white",borderRadius:5}}>
-        <Picker
-          selectedValue={this.state.pickervalue}
-          style={{width: 100,height:10,color:"white",textAlignVertical:"center" }}
-          onValueChange={(itemValue)=>this.evszures(itemValue)}
-        >
-         {evszam}
-
-        </Picker>
-        </View>
+        
 
 
         </View>
