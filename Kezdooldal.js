@@ -29,6 +29,22 @@ export default class Filmek extends React.Component {
         console.error(error);
       });
 
+      fetch('http://172.16.0.29:3000/legjobbsorozatok')
+      .then((response) => response.json())
+      .then((responseJson) => {
+
+        this.setState({
+          isLoading: false,
+          dataSource2: responseJson,
+        }, function(){
+
+        });
+
+      })
+      .catch((error) =>{
+        console.error(error);
+      });
+
 
   }
 
@@ -49,6 +65,27 @@ export default class Filmek extends React.Component {
       
       <View style={{flex: 1, paddingTop:20,backgroundColor:"#262626", }}>
         
+
+        <FlatList 
+          showsHorizontalScrollIndicator={false}
+          data={this.state.dataSource2}
+          horizontal
+          //numColumns={2}
+          keyExtractor={({film_id}, index) => film_id}
+          renderItem={({item}) =>
+          <View >
+            <Image 
+            source={{uri:'http://172.16.0.29:3000/'+item.sorozat_kep}}
+            style={{width:175,height:250,margin:5,borderRadius:15}}
+            />
+            <Text style={{color:"white",margin:5}}>{item.sorozat_cim}</Text>
+            
+          </View>
+  
+        }
+        />
+
+
         <FlatList 
           showsHorizontalScrollIndicator={false}
           data={this.state.dataSource}
@@ -56,7 +93,7 @@ export default class Filmek extends React.Component {
           //numColumns={2}
           keyExtractor={({film_id}, index) => film_id}
           renderItem={({item}) =>
-          <View style={{justifyContent:"center",alignItems:"center", flexDirection:'column', flex:1,marginTop:400}}>
+          <View >
             <Image 
             source={{uri:'http://172.16.0.29:3000/'+item.film_kep}}
             style={{width:175,height:250,margin:5,borderRadius:15}}

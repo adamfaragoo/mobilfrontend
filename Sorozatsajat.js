@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-import { Text, TextInput, View, FlatList,Image,TouchableOpacity,SafeAreaView,ScrollView,LogBox } from 'react-native';
+import { Text, TextInput, View, FlatList,Image,TouchableOpacity,SafeAreaView,ScrollView,LogBox, } from 'react-native';
+import { Ionicons,MaterialCommunityIcons,MaterialIcons } from "@expo/vector-icons";
+import StarRating from 'react-native-star-rating';
+
 
 
 export default class Sorozatsajat extends Component {
@@ -54,8 +57,27 @@ export default class Sorozatsajat extends Component {
         console.error(error);
       });
 
-      LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
-  }
+      fetch('http://172.16.0.29:3000/atlagertek', {
+        method: "POST",
+        body: JSON.stringify(bemenet1),
+        headers: {"Content-type": "application/json; charset=UTF-8"}
+        } )
+        .then((response) => response.json())
+        .then((responseJson) => {
+  
+          this.setState({
+            isLoading: false,
+            dataSource3: responseJson,
+          }, function(){
+  
+          });
+        })
+        .catch((error) =>{
+          console.error(error);
+        });
+  
+        LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
+    }
 
 
   felvitel=async()=>{
@@ -104,6 +126,26 @@ export default class Sorozatsajat extends Component {
         console.error(error);
       });
   }
+  onStarRatingPress = async(ertek) => {
+    this.setState({starCount: ertek})
+    let bemenet = {
+      bevitel1:ertek,
+      bevitel2:this.props.route.params.sorozatid
+
+    }
+    fetch('http://172.16.0.29:3000/ertekeles', {
+      method: "POST",
+      body: JSON.stringify(bemenet),
+      headers: {"Content-type": "application/json; charset=UTF-8"}
+      } )
+      .then((response) => response.text())
+      .then(() => {
+
+      })
+      .catch((error) =>{
+        console.error(error);
+      });
+  }
   
 
 
@@ -114,6 +156,23 @@ export default class Sorozatsajat extends Component {
     return (
       <SafeAreaView style={{backgroundColor:"#262626",flex:1}}>
         <ScrollView nestedScrollEnabled={true}>
+
+        <View style={{marginTop:10,marginLeft:155, flexDirection:"row"}}>
+          <Ionicons name='star' size={30} color={'gold'}></Ionicons>
+          <FlatList
+          scrollEnabled={false}
+          showsVerticalScrollIndicator={false}
+          data={this.state.dataSource3}
+          keyExtractor={({ertekeles_id}) => ertekeles_id} 
+          renderItem={({item}) =>
+          <View>
+            <Text style={{fontSize:28,color:"white"}}>{item.atlag}</Text>
+          </View>
+          }
+          />
+
+        </View>
+
           <View style={{alignItems:"center",marginTop:10}}>
           <FlatList
           scrollEnabled={false}
@@ -129,6 +188,28 @@ export default class Sorozatsajat extends Component {
           }
           />
         </View>
+
+        <View>
+            <Text style={{color:"white",fontSize:25,fontWeight:"bold",textAlign:"center"}}>{sorozatnev}</Text>
+        </View>
+
+        <View style={{borderWidth:1,borderColor:"white",marginTop:8,marginBottom:8}}>
+            <Text style={{fontSize:20,color:"white",textAlign:"center",paddingTop:6}}>Értékeld a sorozatot!</Text>
+            <StarRating
+            disabled={false}
+            containerStyle={{paddingBottom:10,paddingTop:3}}
+            emptyStar={'star-border'}
+            emptyStarColor='white'
+            fullStar={'star'}
+            iconSet={'MaterialIcons'}
+            maxStars={10}
+            starSize={36}
+            rating={this.state.starCount}
+            selectedStar={(ertek) => this.onStarRatingPress(ertek)}
+            fullStarColor='white'
+            />
+          </View>
+
 
         <View style={{padding:10}}>
           <Text style={{fontSize:22,color:"#2596be",fontWeight:"bold"}}>Leírás:</Text>
