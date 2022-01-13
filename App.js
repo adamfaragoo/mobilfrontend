@@ -7,6 +7,7 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 import Kereses from './Kereses.js'
 import Header from './header.js'
 import Header2 from './header2.js'
+import Header4 from './header4.js'
 import Header3 from './header3.js'
 import Filmek from './Filmek.js';
 import Filmsajat from './Filmsajat.js'
@@ -62,6 +63,10 @@ createAjanlasStack = () =>
   <Stack.Screen
   name="Ajanlas"
   component={Ajanlas}
+  options={{
+    headerTitle:()=><Header4/>
+  }
+  }
   />
   </Stack.Navigator>
 
@@ -77,6 +82,8 @@ createAjanlasStack = () =>
   }
   }
   />
+    <Stack.Screen name='Sorozatsajat' component={Sorozatsajat} options={({ route }) => ({ title: route.params.sorozatnev })}/>
+    <Stack.Screen name='Filmsajat' component={Filmsajat} options={({ route })=>({title: route.params.filmnev})}/>
   </Stack.Navigator>
 
 

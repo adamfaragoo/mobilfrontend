@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList, ActivityIndicator, Text, View,Image, ImageBackground  } from 'react-native';
+import { FlatList, ActivityIndicator, Text, View,Image, ImageBackground, TouchableOpacity  } from 'react-native';
 
 
 
@@ -63,10 +63,11 @@ export default class Filmek extends React.Component {
 
     return(
       
-      <View style={{flex: 1, paddingTop:20,backgroundColor:"#262626", }}>
-        
-      <Text style={{color:'white', fontSize:25, textAlign:'center', fontWeight:'bold', marginBottom:15}}>Legjobb sorozatok</Text>
+      <View style={{flex: 1, paddingTop:20,backgroundColor:"#262626",flexDirection:'column', paddingTop:170}}>
+      <View style={{flex:3}}>
+      <Text style={{color:'white', fontSize:20, textAlign:'center', fontWeight:'bold', marginBottom:5, marginTop:30}}>Legjobb sorozatok</Text>
         <FlatList 
+          style={{height:60,}}
           showsHorizontalScrollIndicator={false}
           data={this.state.dataSource2}
           horizontal
@@ -74,38 +75,60 @@ export default class Filmek extends React.Component {
           keyExtractor={({film_id}, index) => film_id}
           renderItem={({item}) =>
           <View >
+            <TouchableOpacity onPress={async()=>this.props.navigation.navigate('Sorozatsajat',{sorozatnev:item.sorozat_cim,
+            sorozathossz:item.sorozat_hossz,
+            sorozatid:item.sorozat_id,
+            sorozatleiras:item.sorozat_leiras,
+            sorozatev:item.sorozat_ev,
+            sorozatido:item.sorozat_hossz,
+            sorozatevad:item.sorozat_evadszam,
+            sorozatepizod:item.sorozat_epizodszam
+            })}>
             <Image 
             source={{uri:'http://172.16.0.29:3000/'+item.sorozat_kep}}
-            style={{width:175,height:250,margin:5,borderRadius:15}}
+            style={{width:120,height:170,margin:5,borderRadius:15}}
             />
             <Text style={{color:"white",fontSize:13,fontWeight:"bold",textAlign:"center"}}>{item.sorozat_cim}</Text>
-            
+            </TouchableOpacity>
+
           </View>
   
         }
         />
+        </View>
 
-      <Text style={{color:'white', fontSize:25, textAlign:'center', fontWeight:'bold', marginBottom:15}}>Legjobb filmek</Text>
+        <View style={{flex:3}}>
+      <Text style={{color:'white', fontSize:20, textAlign:'center', fontWeight:'bold',paddingBottom:5,}}>Legjobb filmek</Text>
 
         <FlatList 
           showsHorizontalScrollIndicator={false}
           data={this.state.dataSource}
           horizontal
+          style={{height:60}}
           //numColumns={2}
           keyExtractor={({film_id}, index) => film_id}
           renderItem={({item}) =>
           <View >
+            <TouchableOpacity onPress={async()=>this.props.navigation.navigate('Filmsajat',
+            {
+            filmid:item.film_id,
+            filmnev:item.film_cim,
+            filmev:item.film_ev,
+            filmhossz:item.film_hossz,
+            filmleiras:item.film_leiras
+            })}>
             <Image 
             source={{uri:'http://172.16.0.29:3000/'+item.film_kep}}
-            style={{width:175,height:250,margin:5,borderRadius:15}}
+            style={{width:120,height:170,margin:5,borderRadius:15}}
             />
-            <Text style={{color:"white",fontSize:13,fontWeight:"bold",textAlign:"center"}}>{item.film_cim}</Text>
             
+            <Text style={{color:"white",fontSize:13,fontWeight:"bold",textAlign:"center", width:100,}}>{item.film_cim}</Text>
+            </TouchableOpacity>
           </View>
   
         }
         />
-        
+        </View>
 
         
       </View>
