@@ -3,15 +3,59 @@ import { FlatList, ActivityIndicator, Text, View,Image, ImageBackground, Touchab
 
 
 
-export default class Filmek extends React.Component {
+export default class Kezdooldal extends React.Component {
 
   constructor(props){
     super(props);
-    this.state ={ isLoading: true}
+    this.state ={ 
+      isLoading: true,
+      dataSource:[],
+      dataSource2:[],
+    }
+    
+    setInterval(()=>{
+      
+      fetch('http://172.16.0.29:3000/legjobbfilmek')
+      .then((response) => response.json())
+      .then((responseJson) => {
+
+        this.setState({
+          isLoading: false,
+          dataSource: responseJson,
+        }, function(){
+
+        });
+
+      })
+      .catch((error) =>{
+        console.error(error);
+      });
+
+      fetch('http://172.16.0.29:3000/legjobbsorozatok')
+      .then((response) => response.json())
+      .then((responseJson) => {
+
+        this.setState({
+          isLoading: false,
+          dataSource2: responseJson,
+        }, function(){
+
+        });
+
+      })
+      .catch((error) =>{
+        console.error(error);
+      })
+
+     
+    }
+    ,2000)
   }
 
   componentDidMount(){
-      
+
+ 
+    
 
   fetch('http://172.16.0.29:3000/legjobbfilmek')
       .then((response) => response.json())
@@ -72,9 +116,8 @@ export default class Filmek extends React.Component {
           data={this.state.dataSource2}
           horizontal
           //numColumns={2}
-          keyExtractor={({film_id}, index) => film_id}
+          keyExtractor={({sorozat_id}, index) => sorozat_id}
           renderItem={({item}) =>
-          <View >
             <TouchableOpacity onPress={async()=>this.props.navigation.navigate('Sorozatsajat',{sorozatnev:item.sorozat_cim,
             sorozathossz:item.sorozat_hossz,
             sorozatid:item.sorozat_id,
@@ -88,10 +131,9 @@ export default class Filmek extends React.Component {
             source={{uri:'http://172.16.0.29:3000/'+item.sorozat_kep}}
             style={{width:120,height:170,margin:5,borderRadius:15}}
             />
-            <Text style={{color:"white",fontSize:13,fontWeight:"bold",textAlign:"center"}}>{item.sorozat_cim}</Text>
+            <Text style={{color:"white",fontSize:13,fontWeight:"bold",textAlign:"center", width:135}}>{item.sorozat_cim}</Text>
             </TouchableOpacity>
 
-          </View>
   
         }
         />
@@ -101,14 +143,12 @@ export default class Filmek extends React.Component {
       <Text style={{color:'white', fontSize:20, textAlign:'center', fontWeight:'bold',paddingBottom:5,}}>Legjobb filmek</Text>
 
         <FlatList 
+          style={{height:60}}
           showsHorizontalScrollIndicator={false}
           data={this.state.dataSource}
           horizontal
-          style={{height:60}}
-          //numColumns={2}
           keyExtractor={({film_id}, index) => film_id}
           renderItem={({item}) =>
-          <View >
             <TouchableOpacity onPress={async()=>this.props.navigation.navigate('Filmsajat',
             {
             filmid:item.film_id,
@@ -121,9 +161,8 @@ export default class Filmek extends React.Component {
             source={{uri:'http://172.16.0.29:3000/'+item.film_kep}}
             style={{width:120,height:170,margin:5,borderRadius:15}}
             />        
-            <Text style={{color:"white",fontSize:13,fontWeight:"bold",textAlign:"center", width:100,}}>{item.film_cim}</Text>
+            <Text style={{color:"white",fontSize:13,fontWeight:"bold",textAlign:"center", width:125, alignItems:'center' }}>{item.film_cim}</Text>
             </TouchableOpacity>
-          </View>
   
         }
         />

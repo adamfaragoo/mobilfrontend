@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Text, TextInput, View, FlatList,Image,TouchableOpacity,SafeAreaView,ScrollView,LogBox, } from 'react-native';
-import { Ionicons,MaterialCommunityIcons,MaterialIcons } from "@expo/vector-icons";
+import { Ionicons, } from "@expo/vector-icons";
 import StarRating from 'react-native-star-rating';
 
 
@@ -19,6 +19,24 @@ export default class Filmsajat extends Component {
     let bemenet1 = {
       bevitel3:this.props.route.params.filmid
     }
+    fetch('http://172.16.0.29:3000/filmkep', {
+      method: "POST",
+      body: JSON.stringify(bemenet1),
+      headers: {"Content-type": "application/json; charset=UTF-8"}
+      } )
+      .then((response) => response.json())
+      .then((responseJson) => {
+
+        this.setState({
+          isLoading: false,
+          dataSource2: responseJson,
+        }, function(){
+
+        });
+      })
+      .catch((error) =>{
+        console.error(error);
+      });
 
 
     fetch('http://172.16.0.29:3000/filmkommentek', {
@@ -40,25 +58,7 @@ export default class Filmsajat extends Component {
         console.error(error);
       });
     
-      fetch('http://172.16.0.29:3000/filmkep', {
-      method: "POST",
-      body: JSON.stringify(bemenet1),
-      headers: {"Content-type": "application/json; charset=UTF-8"}
-      } )
-      .then((response) => response.json())
-      .then((responseJson) => {
-
-        this.setState({
-          isLoading: false,
-          dataSource2: responseJson,
-        }, function(){
-
-        });
-      })
-      .catch((error) =>{
-        console.error(error);
-      });
-
+      
       LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
 
 

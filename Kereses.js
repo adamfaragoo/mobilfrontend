@@ -33,7 +33,6 @@ export default class Kereses extends Component {
         }, function(){
 
         });
-        
 
       })
 
