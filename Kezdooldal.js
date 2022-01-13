@@ -120,8 +120,7 @@ export default class Filmek extends React.Component {
             <Image 
             source={{uri:'http://172.16.0.29:3000/'+item.film_kep}}
             style={{width:120,height:170,margin:5,borderRadius:15}}
-            />
-            
+            />        
             <Text style={{color:"white",fontSize:13,fontWeight:"bold",textAlign:"center", width:100,}}>{item.film_cim}</Text>
             </TouchableOpacity>
           </View>
