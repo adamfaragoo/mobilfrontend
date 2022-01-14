@@ -4,12 +4,11 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator,  } from '@react-navigation/stack';
 import { Ionicons,MaterialCommunityIcons,MaterialIcons } from "@expo/vector-icons";
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
-import Kereses from './Kereses.js'
+import Kereses from './Filmek.js'
 import Header from './header.js'
 import Header2 from './header2.js'
 import Header4 from './header4.js'
 import Header3 from './header3.js'
-import Filmek from './Filmek.js';
 import Filmsajat from './Filmsajat.js'
 import Sorozat from './Sorozat.js';
 import Sorozatsajat from './Sorozatsajat.js'
@@ -93,7 +92,7 @@ createAjanlasStack = () =>
       <NavigationContainer>
         <BottomTab.Navigator barStyle={{backgroundColor:"lightgrey"}}>
           
-           <BottomTab.Screen name="Kezdőoldal" component={this.createKezdooldalStack} options={{
+           <BottomTab.Screen name="Kezdőlap" component={this.createKezdooldalStack} options={{
             tabBarIcon: ({focused}) => 
             (<View>
               <Ionicons name={focused ? 'home-sharp': 'home-outline'} size={25} ></Ionicons>

@@ -1,7 +1,8 @@
 import React from 'react';
-import { FlatList, ActivityIndicator, Text, View,Image, ImageBackground, TouchableOpacity  } from 'react-native';
+import { FlatList, ActivityIndicator, Text, View,Image, ImageBackground, TouchableOpacity, Dimensions, ScrollView  } from 'react-native';
 
-
+var height = Dimensions.get("window").height;
+var width = Dimensions.get("window").width;
 
 export default class Kezdooldal extends React.Component {
 
@@ -107,8 +108,10 @@ export default class Kezdooldal extends React.Component {
 
     return(
       
-      <View style={{flex: 1, paddingTop:20,backgroundColor:"#262626",flexDirection:'column', paddingTop:170}}>
-      <View style={{flex:3}}>
+      <ScrollView style={{flex:1, paddingTop:20,backgroundColor:"#262626",flexDirection:'column'}}>
+        <View style={{height:height*0.35}}>
+          </View>
+      <View style={{height:height*0.35}}>
       <Text style={{color:'white', fontSize:20, textAlign:'center', fontWeight:'bold', marginBottom:5, marginTop:30}}>Legjobb sorozatok</Text>
         <FlatList 
           style={{height:60,}}
@@ -118,7 +121,8 @@ export default class Kezdooldal extends React.Component {
           //numColumns={2}
           keyExtractor={({sorozat_id}, index) => sorozat_id}
           renderItem={({item}) =>
-            <TouchableOpacity onPress={async()=>this.props.navigation.navigate('Sorozatsajat',{sorozatnev:item.sorozat_cim,
+            <TouchableOpacity 
+            onPress={async()=>this.props.navigation.navigate('Sorozatsajat',{sorozatnev:item.sorozat_cim,
             sorozathossz:item.sorozat_hossz,
             sorozatid:item.sorozat_id,
             sorozatleiras:item.sorozat_leiras,
@@ -139,7 +143,7 @@ export default class Kezdooldal extends React.Component {
         />
         </View>
 
-        <View style={{flex:3}}>
+        <View style={{height:height*0.35}}>
       <Text style={{color:'white', fontSize:20, textAlign:'center', fontWeight:'bold',paddingBottom:5,}}>Legjobb filmek</Text>
 
         <FlatList 
@@ -149,7 +153,8 @@ export default class Kezdooldal extends React.Component {
           horizontal
           keyExtractor={({film_id}, index) => film_id}
           renderItem={({item}) =>
-            <TouchableOpacity onPress={async()=>this.props.navigation.navigate('Filmsajat',
+            <TouchableOpacity 
+            onPress={async()=>this.props.navigation.navigate('Filmsajat',
             {
             filmid:item.film_id,
             filmnev:item.film_cim,
@@ -169,7 +174,7 @@ export default class Kezdooldal extends React.Component {
         </View>
 
         
-      </View>
+      </ScrollView>
     );
   }
 }

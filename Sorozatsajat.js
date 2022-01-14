@@ -77,6 +77,8 @@ export default class Sorozatsajat extends Component {
         });
   
         LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
+        LogBox.ignoreLogs(['Each child in a list should have a unique "key" prop']);
+
     }
 
 
