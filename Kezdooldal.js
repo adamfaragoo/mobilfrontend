@@ -119,6 +119,7 @@ export default class Kezdooldal extends React.Component {
       <Text style={{color:'white', fontSize:17, textAlign:'left', marginLeft:10, fontWeight:'bold'}}>Legnagyobb értékelésű</Text>
       <Text style={{color:'white', fontSize:17, textAlign: 'left'}}> Sorozatok </Text>
       </Text>        
+
       <FlatList 
           style={{height:60,}}
           showsHorizontalScrollIndicator={false}
