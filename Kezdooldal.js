@@ -114,8 +114,12 @@ export default class Kezdooldal extends React.Component {
         <View style={{height:height*0.35}}>
           </View>
       <View style={{height:height*0.35}}>
-      <Text style={{color:'white', fontSize:20, textAlign:'center', fontWeight:'bold', marginBottom:5, marginTop:30}}>Legjobb sorozatok</Text>
-        <FlatList 
+
+      <Text style={{paddingBottom:5, marginLeft:10}}> 
+      <Text style={{color:'white', fontSize:17, textAlign:'left', marginLeft:10, fontWeight:'bold'}}>Legnagyobb értékelésű</Text>
+      <Text style={{color:'white', fontSize:17, textAlign: 'left'}}> Sorozatok </Text>
+      </Text>        
+      <FlatList 
           style={{height:60,}}
           showsHorizontalScrollIndicator={false}
           data={this.state.dataSource2}
@@ -146,8 +150,10 @@ export default class Kezdooldal extends React.Component {
         </View>
 
         <View style={{height:height*0.35}}>
-      <Text style={{color:'white', fontSize:20, textAlign:'center', fontWeight:'bold',paddingBottom:5,}}>Legjobb filmek</Text>
-
+        <Text style={{paddingBottom:5, marginLeft:10}}> 
+      <Text style={{color:'white', fontSize:17, textAlign:'left', marginLeft:10, fontWeight:'bold',paddingBottom:5,}}>Legnagyobb értékelésű</Text>
+      <Text style={{color:'white', fontSize:17, textAlign: 'left', paddingBottom:5}}> Filmek </Text>
+      </Text>
         <FlatList 
           style={{height:60}}
           showsHorizontalScrollIndicator={false}
