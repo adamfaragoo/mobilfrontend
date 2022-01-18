@@ -113,11 +113,11 @@ export default class Kezdooldal extends React.Component {
       <ScrollView style={{flex:1, paddingTop:20,backgroundColor:"#262626",flexDirection:'column'}}>
         <View style={{height:height*0.35}}>
           </View>
-      <View style={{height:height*0.35}}>
+      <View style={{height:height*0.30}}>
 
       <Text style={{paddingBottom:5, marginLeft:10}}> 
       <Text style={{color:'white', fontSize:17, textAlign:'left', marginLeft:10, fontWeight:'bold'}}>Legnagyobb értékelésű</Text>
-      <Text style={{color:'white', fontSize:17, textAlign: 'left'}}> Sorozatok </Text>
+      <Text style={{color:'white', fontSize:17, textAlign: 'left'}}> Sorozatok</Text>
       </Text>        
 
       <FlatList 
@@ -142,7 +142,7 @@ export default class Kezdooldal extends React.Component {
             source={{uri:'http://'+ipcim+':3000/'+item.sorozat_kep}}
             style={{width:120,height:170,margin:5,borderRadius:15}}
             />
-            <Text style={{color:"white",fontSize:13,fontWeight:"bold",textAlign:"center", width:135}}>{item.sorozat_cim}</Text>
+            <Text style={{color:"white",fontSize:13,fontWeight:"bold",textAlign:"center", width:135, }}>{item.sorozat_cim}</Text>
             </TouchableOpacity>
 
   
