@@ -4,6 +4,7 @@ import { Ionicons, } from "@expo/vector-icons";
 import StarRating from 'react-native-star-rating';
 
 
+const ipcim="172.16.0.29";
 
 export default class Filmsajat extends Component {
   constructor(props) {
@@ -19,7 +20,7 @@ export default class Filmsajat extends Component {
     let bemenet1 = {
       bevitel3:this.props.route.params.filmid
     }
-    fetch('http://172.16.0.29:3000/filmkep', {
+    fetch('http://'+ipcim+':3000/filmkep', {
       method: "POST",
       body: JSON.stringify(bemenet1),
       headers: {"Content-type": "application/json; charset=UTF-8"}
@@ -39,7 +40,7 @@ export default class Filmsajat extends Component {
       });
 
 
-    fetch('http://172.16.0.29:3000/filmkommentek', {
+    fetch('http://'+ipcim+':3000/filmkommentek', {
       method: "POST",
       body: JSON.stringify(bemenet1),
       headers: {"Content-type": "application/json; charset=UTF-8"}
@@ -64,7 +65,7 @@ export default class Filmsajat extends Component {
 
 
 
-      fetch('http://172.16.0.29:3000/filmatlagertek', {
+      fetch('http://'+ipcim+':3000/filmatlagertek', {
       method: "POST",
       body: JSON.stringify(bemenet1),
       headers: {"Content-type": "application/json; charset=UTF-8"}
@@ -95,7 +96,7 @@ export default class Filmsajat extends Component {
       bevitel3:this.props.route.params.filmid
 
     }
-    fetch('http://172.16.0.29:3000/filmkommentfelvitel', {
+    fetch('http://'+ipcim+':3000/filmkommentfelvitel', {
       method: "POST",
       body: JSON.stringify(bemenet),
       headers: {"Content-type": "application/json; charset=UTF-8"}
@@ -114,7 +115,7 @@ export default class Filmsajat extends Component {
       let bemenet1 = {
         bevitel3:this.props.route.params.filmid
       }
-      fetch('http://172.16.0.29:3000/filmkommentek', {
+      fetch('http://'+ipcim+':3000/filmkommentek', {
       method: "POST",
       body: JSON.stringify(bemenet1),
       headers: {"Content-type": "application/json; charset=UTF-8"}
@@ -141,7 +142,7 @@ export default class Filmsajat extends Component {
       bevitel2:this.props.route.params.filmid
 
     }
-    fetch('http://172.16.0.29:3000/filmertekeles', {
+    fetch('http://'+ipcim+':3000/filmertekeles', {
       method: "POST",
       body: JSON.stringify(bemenet),
       headers: {"Content-type": "application/json; charset=UTF-8"}
@@ -188,7 +189,7 @@ export default class Filmsajat extends Component {
           keyExtractor={({film_id}) => film_id} 
           renderItem={({item}) =>
           <Image 
-          source={{uri:'http://172.16.0.29:3000/'+item.film_kep}}
+          source={{uri:'http://'+ipcim+':3000/'+item.film_kep}}
           style={{width:200,height:300,borderRadius:5}}
           />
           }

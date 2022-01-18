@@ -3,6 +3,7 @@ import { FlatList, ActivityIndicator, Text, View,Image,Button,TouchableOpacity,M
 import { MaterialIcons } from "@expo/vector-icons";
  
 
+const ipcim="172.16.0.29";
 
 export default class Sorozat extends React.Component {
 
@@ -18,7 +19,7 @@ export default class Sorozat extends React.Component {
 
   
   componentDidMount(){
-     fetch('http://172.16.0.29:3000/sorozat')
+     fetch('http://'+ipcim+':3000/sorozat')
       .then((response) => response.json())
       .then((responseJson) => {
 
@@ -35,7 +36,7 @@ export default class Sorozat extends React.Component {
         console.error(error);
       });
 
-      fetch('http://172.16.0.29:3000/mufaj')
+      fetch('http://'+ipcim+':3000/mufaj')
       .then((response) => response.json())
       .then((responseJson) => {
 
@@ -63,7 +64,7 @@ export default class Sorozat extends React.Component {
 
 
     }
-    fetch('http://172.16.0.29:3000/kereses', {
+    fetch('http://'+ipcim+':3000/kereses', {
      method: "POST",
      body: JSON.stringify(bemenet),
      headers: {"Content-type": "application/json; charset=UTF-8"}
@@ -93,7 +94,7 @@ export default class Sorozat extends React.Component {
     let bemenet={
       bevitel2:szam
     }
-    return fetch('http://172.16.0.29:3000/sorozatszures', {
+    return fetch('http://'+ipcim+':3000/sorozatszures', {
       method: "POST",
       body: JSON.stringify(bemenet),
       headers: {"Content-type": "application/json; charset=UTF-8"}
@@ -117,7 +118,7 @@ export default class Sorozat extends React.Component {
 
   osszes= async() =>
   {
-    fetch('http://172.16.0.29:3000/sorozat')
+    fetch('http://'+ipcim+':3000/sorozat')
       .then((response) => response.json())
       .then((responseJson) => {
 
@@ -217,7 +218,7 @@ export default class Sorozat extends React.Component {
             sorozatepizod:item.sorozat_epizodszam
             })}>
             <Image 
-            source={{uri:'http://172.16.0.29:3000/'+item.sorozat_kep}}
+            source={{uri:'http://'+ipcim+':3000/'+item.sorozat_kep}}
             style={{width:150,height:230,marginRight:10,marginTop:10,marginLeft:10,borderRadius:15}}
             />
             <Text style={{color:"white",marginLeft:15,marginTop:5,fontSize:16,fontWeight:"bold",width:155}}>{item.sorozat_cim}</Text>

@@ -4,6 +4,7 @@ import { color } from 'react-native-reanimated';
 import { Ionicons,MaterialCommunityIcons,MaterialIcons } from "@expo/vector-icons";
 import { Picker } from '@react-native-picker/picker'
 
+const ipcim="172.16.0.29";
 
 
 export default class Kereses extends Component {
@@ -24,7 +25,7 @@ export default class Kereses extends Component {
   
   
   componentDidMount(){
-     fetch('http://172.16.0.29:3000/mufajok')
+     fetch('http://'+ipcim+':3000/mufajok')
       .then((response) => response.json())
       .then((responseJson) => {
 
@@ -44,7 +45,7 @@ export default class Kereses extends Component {
   
 
 
-     fetch('http://172.16.0.29:3000/filmek')
+     fetch('http://'+ipcim+':3000/filmek')
       .then((response) => response.json())
       .then((responseJson) => {
 
@@ -69,7 +70,7 @@ export default class Kereses extends Component {
     let bemenet={
       bevitel2:szam
     }
-    return fetch('http://172.16.0.29:3000/filmszures', {
+    return fetch('http://'+ipcim+':3000/filmszures', {
       method: "POST",
       body: JSON.stringify(bemenet),
       headers: {"Content-type": "application/json; charset=UTF-8"}
@@ -98,7 +99,7 @@ export default class Kereses extends Component {
 
 
      }
-     fetch('http://172.16.0.29:3000/kereses', {
+     fetch('http://'+ipcim+':3000/kereses', {
       method: "POST",
       body: JSON.stringify(bemenet),
       headers: {"Content-type": "application/json; charset=UTF-8"}
@@ -124,7 +125,7 @@ export default class Kereses extends Component {
    
   osszes= async() =>
   {
-    fetch('http://172.16.0.29:3000/filmek')
+    fetch('http://'+ipcim+':3000/filmek')
       .then((response) => response.json())
       .then((responseJson) => {
 
@@ -149,7 +150,7 @@ export default class Kereses extends Component {
     let bemenet={
       bevitel1:itemValue
     }
-    return fetch('http://172.16.0.29:3000/evszures', {
+    return fetch('http://'+ipcim+':3000/evszures', {
       method: "POST",
       body: JSON.stringify(bemenet),
       headers: {"Content-type": "application/json; charset=UTF-8"}

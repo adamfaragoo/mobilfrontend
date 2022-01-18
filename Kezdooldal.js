@@ -3,6 +3,8 @@ import { FlatList, ActivityIndicator, Text, View,Image, ImageBackground, Touchab
 
 var height = Dimensions.get("window").height;
 var width = Dimensions.get("window").width;
+const ipcim="172.16.0.29";
+
 
 export default class Kezdooldal extends React.Component {
 
@@ -16,7 +18,7 @@ export default class Kezdooldal extends React.Component {
     
     setInterval(()=>{
       
-      fetch('http://172.16.0.29:3000/legjobbfilmek')
+      fetch('http://'+ipcim+':3000/legjobbfilmek')
       .then((response) => response.json())
       .then((responseJson) => {
 
@@ -32,7 +34,7 @@ export default class Kezdooldal extends React.Component {
         console.error(error);
       });
 
-      fetch('http://172.16.0.29:3000/legjobbsorozatok')
+      fetch('http://'+ipcim+':3000/legjobbsorozatok')
       .then((response) => response.json())
       .then((responseJson) => {
 
@@ -58,7 +60,7 @@ export default class Kezdooldal extends React.Component {
  
     
 
-  fetch('http://172.16.0.29:3000/legjobbfilmek')
+  fetch('http://'+ipcim+':3000/legjobbfilmek')
       .then((response) => response.json())
       .then((responseJson) => {
 
@@ -74,7 +76,7 @@ export default class Kezdooldal extends React.Component {
         console.error(error);
       });
 
-      fetch('http://172.16.0.29:3000/legjobbsorozatok')
+      fetch('http://'+ipcim+':3000/legjobbsorozatok')
       .then((response) => response.json())
       .then((responseJson) => {
 
@@ -132,7 +134,7 @@ export default class Kezdooldal extends React.Component {
             sorozatepizod:item.sorozat_epizodszam
             })}>
             <Image 
-            source={{uri:'http://172.16.0.29:3000/'+item.sorozat_kep}}
+            source={{uri:'http://'+ipcim+':3000/'+item.sorozat_kep}}
             style={{width:120,height:170,margin:5,borderRadius:15}}
             />
             <Text style={{color:"white",fontSize:13,fontWeight:"bold",textAlign:"center", width:135}}>{item.sorozat_cim}</Text>
@@ -163,7 +165,7 @@ export default class Kezdooldal extends React.Component {
             filmleiras:item.film_leiras
             })}>
             <Image 
-            source={{uri:'http://172.16.0.29:3000/'+item.film_kep}}
+            source={{uri:'http://'+ipcim+':3000/'+item.film_kep}}
             style={{width:120,height:170,margin:5,borderRadius:15}}
             />        
             <Text style={{color:"white",fontSize:13,fontWeight:"bold",textAlign:"center", width:125, alignItems:'center' }}>{item.film_cim}</Text>
