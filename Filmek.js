@@ -99,7 +99,7 @@ export default class Kereses extends Component {
 
 
      }
-     fetch('http://'+ipcim+':3000/kereses', {
+     fetch('http://'+ipcim+':3000/filmkereses', {
       method: "POST",
       body: JSON.stringify(bemenet),
       headers: {"Content-type": "application/json; charset=UTF-8"}
