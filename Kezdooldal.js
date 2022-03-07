@@ -167,7 +167,8 @@ export default class Kezdooldal extends React.Component {
             sorozatev:item.sorozat_ev,
             sorozatido:item.sorozat_hossz,
             sorozatevad:item.sorozat_evadszam,
-            sorozatepizod:item.sorozat_epizodszam
+            sorozatepizod:item.sorozat_epizodszam,
+            sorozatmufaj:item.mufaj_nev
             })}>
             <Image 
             source={{uri:'http://'+ipcim+':3000/'+item.sorozat_kep}}
@@ -199,7 +200,8 @@ export default class Kezdooldal extends React.Component {
             filmnev:item.film_cim,
             filmev:item.film_ev,
             filmhossz:item.film_hossz,
-            filmleiras:item.film_leiras
+            filmleiras:item.film_leiras,
+            filmmufaj:item.mufaj_nev
             })}>
             <Image 
             source={{uri:'http://'+ipcim+':3000/'+item.film_kep}}
@@ -236,7 +238,8 @@ export default class Kezdooldal extends React.Component {
             sorozatev:item.sorozat_ev,
             sorozatido:item.sorozat_hossz,
             sorozatevad:item.sorozat_evadszam,
-            sorozatepizod:item.sorozat_epizodszam
+            sorozatepizod:item.sorozat_epizodszam,
+            sorozatmufaj:item.mufaj_nev
             })}>
             <Image 
             source={{uri:'http://'+ipcim+':3000/'+item.sorozat_kep}}
@@ -269,7 +272,8 @@ export default class Kezdooldal extends React.Component {
             filmnev:item.film_cim,
             filmev:item.film_ev,
             filmhossz:item.film_hossz,
-            filmleiras:item.film_leiras
+            filmleiras:item.film_leiras,
+            filmmufaj:item.mufaj_nev
             })}>
             <Image 
             source={{uri:'http://'+ipcim+':3000/'+item.film_kep}}

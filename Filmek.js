@@ -250,7 +250,8 @@ export default class Kereses extends Component {
             filmnev:item.film_cim,
             filmev:item.film_ev,
             filmhossz:item.film_hossz,
-            filmleiras:item.film_leiras
+            filmleiras:item.film_leiras,
+            filmmufaj:item.mufaj_nev
             })}>
             <Image 
             source={{uri:'http://172.16.0.29:3000/'+item.film_kep}}

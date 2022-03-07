@@ -215,7 +215,8 @@ export default class Sorozat extends React.Component {
             sorozatev:item.sorozat_ev,
             sorozatido:item.sorozat_hossz,
             sorozatevad:item.sorozat_evadszam,
-            sorozatepizod:item.sorozat_epizodszam
+            sorozatepizod:item.sorozat_epizodszam,
+            sorozatmufaj:item.mufaj_nev
             })}>
             <Image 
             source={{uri:'http://'+ipcim+':3000/'+item.sorozat_kep}}

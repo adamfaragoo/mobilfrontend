@@ -198,7 +198,7 @@ export default class Filmsajat extends Component {
   
   render() {
 
-    const {filmnev,filmid,filmleiras,filmev,filmhossz} = this.props.route.params
+    const {filmnev,filmid,filmleiras,filmev,filmhossz, filmmufaj} = this.props.route.params
 
     return (
       <SafeAreaView style={{backgroundColor:"#262626",flex:1}}>
@@ -261,6 +261,10 @@ export default class Filmsajat extends Component {
           <Text style={{fontSize:22,color:"#2596be",fontWeight:"bold"}}>Leírás:</Text>
           <Text style={{fontSize:15,color:"white",padding:2}}>{filmleiras}</Text>
           <Text style={{fontSize:22,color:"#2596be",fontWeight:"bold",marginTop:2}}>További infók:</Text>
+          <Text>
+            <Text style={{fontSize:16,color:"white",fontWeight:"bold"}}>Műfaj: </Text>
+            <Text style={{fontSize:16,color:"white"}}>{filmmufaj}</Text>
+          </Text>
           <Text>
             <Text style={{fontSize:16,color:"white",fontWeight:"bold"}}>Megjelenés dátuma: </Text>
             <Text style={{fontSize:16,color:"white"}}>{filmev}</Text>
