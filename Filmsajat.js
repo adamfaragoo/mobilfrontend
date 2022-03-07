@@ -104,6 +104,24 @@ export default class Filmsajat extends Component {
       .then((response) => response.text())
       .then(() => {
 
+        fetch('http://'+ipcim+':3000/filmkommentek', {
+          method: "POST",
+          body: JSON.stringify(bemenet1),
+          headers: {"Content-type": "application/json; charset=UTF-8"}
+          } )
+          .then((response) => response.json())
+          .then((responseJson) => {
+    
+            this.setState({
+              isLoading: false,
+              dataSource: responseJson,
+            }, function(){
+    
+            });
+          })
+          .catch((error) =>{
+            console.error(error);
+          });
       })
       .catch((error) =>{
         console.error(error);
@@ -142,6 +160,9 @@ export default class Filmsajat extends Component {
       bevitel2:this.props.route.params.filmid
 
     }
+    let bemenet1 = {
+      bevitel3:this.props.route.params.filmid
+    }
     fetch('http://'+ipcim+':3000/filmertekeles', {
       method: "POST",
       body: JSON.stringify(bemenet),
@@ -149,7 +170,25 @@ export default class Filmsajat extends Component {
       } )
       .then((response) => response.text())
       .then(() => {
+        fetch('http://'+ipcim+':3000/filmatlagertek', {
+      method: "POST",
+      body: JSON.stringify(bemenet1),
+      headers: {"Content-type": "application/json; charset=UTF-8"}
+      } )
+      .then((response) => response.json())
+      .then((responseJson) => {
 
+        this.setState({
+          isLoading: false,
+          dataSource3: responseJson,
+        }, function(){
+
+        });
+      })
+      .catch((error) =>{
+        console.error(error);
+      });
+  
       })
       .catch((error) =>{
         console.error(error);

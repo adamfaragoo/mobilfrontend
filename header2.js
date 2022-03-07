@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, Text, View, TouchableOpacity, Modal, Button, show,} from 'react-native';
 import {MaterialIcons} from '@expo/vector-icons';
 import { NavigationContainer,DrawerActions } from '@react-navigation/native';
-import { Ionicons, MaterialCommunityIcons,AntDesign,Entypo } from "@expo/vector-icons";
+import { Ionicons, MaterialCommunityIcons,Entypo } from "@expo/vector-icons";
 
 
 
