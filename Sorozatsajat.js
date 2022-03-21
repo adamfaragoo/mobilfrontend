@@ -4,7 +4,8 @@ import { Ionicons,MaterialCommunityIcons,MaterialIcons } from "@expo/vector-icon
 import StarRating from 'react-native-star-rating';
 
 
-const ipcim="172.16.0.29";
+const IP = require('./ipcim.js');
+
 
 export default class Sorozatsajat extends Component {
   constructor(props) {
@@ -20,7 +21,7 @@ export default class Sorozatsajat extends Component {
     let bemenet1 = {
       bevitel3:this.props.route.params.sorozatid
     }
-    fetch('http://'+ipcim+':3000/kommentek', {
+    fetch('http://'+IP.ipcim+'/kommentek', {
       method: "POST",
       body: JSON.stringify(bemenet1),
       headers: {"Content-type": "application/json; charset=UTF-8"}
@@ -39,7 +40,7 @@ export default class Sorozatsajat extends Component {
         console.error(error);
       });
 
-      fetch('http://'+ipcim+':3000/sorozatkep', {
+      fetch('http://'+IP.ipcim+'/sorozatkep', {
       method: "POST",
       body: JSON.stringify(bemenet1),
       headers: {"Content-type": "application/json; charset=UTF-8"}
@@ -58,7 +59,7 @@ export default class Sorozatsajat extends Component {
         console.error(error);
       });
 
-      fetch('http://'+ipcim+':3000/atlagertek', {
+      fetch('http://'+IP.ipcim+'/atlagertek', {
         method: "POST",
         body: JSON.stringify(bemenet1),
         headers: {"Content-type": "application/json; charset=UTF-8"}
@@ -91,7 +92,7 @@ export default class Sorozatsajat extends Component {
       bevitel3:this.props.route.params.sorozatid
 
     }
-    fetch('http://'+ipcim+':3000/kommentfelvitel', {
+    fetch('http://'+IP.ipcim+'/kommentfelvitel', {
       method: "POST",
       body: JSON.stringify(bemenet),
       headers: {"Content-type": "application/json; charset=UTF-8"}
@@ -110,7 +111,7 @@ export default class Sorozatsajat extends Component {
       let bemenet1 = {
         bevitel3:this.props.route.params.sorozatid
       }
-      fetch('http://'+ipcim+':3000/kommentek', {
+      fetch('http://'+IP.ipcim+'/kommentek', {
       method: "POST",
       body: JSON.stringify(bemenet1),
       headers: {"Content-type": "application/json; charset=UTF-8"}
@@ -139,14 +140,14 @@ export default class Sorozatsajat extends Component {
     let bemenet1 = {
       bevitel3:this.props.route.params.sorozatid
     }
-    fetch('http://'+ipcim+':3000/ertekeles', {
+    fetch('http://'+IP.ipcim+'/ertekeles', {
       method: "POST",
       body: JSON.stringify(bemenet),
       headers: {"Content-type": "application/json; charset=UTF-8"}
       } )
       .then((response) => response.text())
       .then(() => {
-        fetch('http://'+ipcim+':3000/atlagertek', {
+        fetch('http://'+IP.ipcim+'/atlagertek', {
           method: "POST",
           body: JSON.stringify(bemenet1),
           headers: {"Content-type": "application/json; charset=UTF-8"}
@@ -205,7 +206,7 @@ export default class Sorozatsajat extends Component {
           keyExtractor={({sorozat_id}) => sorozat_id} 
           renderItem={({item}) =>
           <Image 
-          source={{uri:'http://'+ipcim+':3000/'+item.sorozat_kep}}
+          source={{uri:'http://'+IP.ipcim+'/'+item.sorozat_kep}}
           style={{width:200,height:300,borderRadius:5}}
           />
           }

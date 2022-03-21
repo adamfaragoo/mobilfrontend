@@ -3,7 +3,9 @@ import { FlatList, ActivityIndicator, Text, View,Image, ImageBackground, Touchab
 
 var height = Dimensions.get("window").height;
 var width = Dimensions.get("window").width;
-const ipcim="172.16.0.29";
+
+const IP = require('./ipcim.js');
+
 
 
 export default class Kezdooldal extends React.Component {
@@ -20,7 +22,7 @@ export default class Kezdooldal extends React.Component {
     
     setInterval(()=>{
       
-      fetch('http://'+ipcim+':3000/legjobbfilmek')
+      fetch('http://'+IP.ipcim+'/legjobbfilmek')
       .then((response) => response.json())
       .then((responseJson) => {
 
@@ -36,7 +38,7 @@ export default class Kezdooldal extends React.Component {
         console.error(error);
       });
 
-      fetch('http://'+ipcim+':3000/legjobbsorozatok')
+      fetch('http://'+IP.ipcim+'/legjobbsorozatok')
       .then((response) => response.json())
       .then((responseJson) => {
 
@@ -62,7 +64,7 @@ export default class Kezdooldal extends React.Component {
  
     
 
-  fetch('http://'+ipcim+':3000/legjobbfilmek')
+  fetch('http://'+IP.ipcim+'/legjobbfilmek')
       .then((response) => response.json())
       .then((responseJson) => {
 
@@ -78,7 +80,7 @@ export default class Kezdooldal extends React.Component {
         console.error(error);
       });
 
-      fetch('http://'+ipcim+':3000/legjobbsorozatok')
+      fetch('http://'+IP.ipcim+'/legjobbsorozatok')
       .then((response) => response.json())
       .then((responseJson) => {
 
@@ -93,7 +95,7 @@ export default class Kezdooldal extends React.Component {
       .catch((error) =>{
         console.error(error);
       });
-      fetch('http://'+ipcim+':3000/legfrissebbsorozatok')
+      fetch('http://'+IP.ipcim+'/legfrissebbsorozatok')
       .then((response) => response.json())
       .then((responseJson) => {
 
@@ -109,7 +111,7 @@ export default class Kezdooldal extends React.Component {
         console.error(error);
       });
 
-      fetch('http://'+ipcim+':3000/legfrissebbfilmek')
+      fetch('http://'+IP.ipcim+'/legfrissebbfilmek')
       .then((response) => response.json())
       .then((responseJson) => {
 
@@ -171,7 +173,7 @@ export default class Kezdooldal extends React.Component {
             sorozatmufaj:item.mufaj_nev
             })}>
             <Image 
-            source={{uri:'http://'+ipcim+':3000/'+item.sorozat_kep}}
+            source={{uri:'http://'+IP.ipcim+'/'+item.sorozat_kep}}
             style={{width:120,height:170,margin:5,borderRadius:15}}
             />
             <Text style={{color:"white",fontSize:13,fontWeight:"bold",textAlign:"center", width:135, }}>{item.sorozat_cim}</Text>
@@ -204,7 +206,7 @@ export default class Kezdooldal extends React.Component {
             filmmufaj:item.mufaj_nev
             })}>
             <Image 
-            source={{uri:'http://'+ipcim+':3000/'+item.film_kep}}
+            source={{uri:'http://'+IP.ipcim+'/'+item.film_kep}}
             style={{width:120,height:170,margin:5,borderRadius:15}}
             />        
             <Text style={{color:"white",fontSize:13,fontWeight:"bold",textAlign:"center", width:125, alignItems:'center' }}>{item.film_cim}</Text>
@@ -242,7 +244,7 @@ export default class Kezdooldal extends React.Component {
             sorozatmufaj:item.mufaj_nev
             })}>
             <Image 
-            source={{uri:'http://'+ipcim+':3000/'+item.sorozat_kep}}
+            source={{uri:'http://'+IP.ipcim+'/'+item.sorozat_kep}}
             style={{width:120,height:170,margin:5,borderRadius:15}}
             />
             <Text style={{color:"white",fontSize:13,fontWeight:"bold",textAlign:"center", width:135, }}>{item.sorozat_cim}</Text>
@@ -276,7 +278,7 @@ export default class Kezdooldal extends React.Component {
             filmmufaj:item.mufaj_nev
             })}>
             <Image 
-            source={{uri:'http://'+ipcim+':3000/'+item.film_kep}}
+            source={{uri:'http://'+IP.ipcim+'/'+item.film_kep}}
             style={{width:120,height:170,margin:5,borderRadius:15}}
             />        
             <Text style={{color:"white",fontSize:13,fontWeight:"bold",textAlign:"center", width:125, alignItems:'center' }}>{item.film_cim}</Text>

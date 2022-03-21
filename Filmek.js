@@ -4,8 +4,7 @@ import { color } from 'react-native-reanimated';
 import { Ionicons,MaterialCommunityIcons,MaterialIcons } from "@expo/vector-icons";
 import { Picker } from '@react-native-picker/picker'
 
-const ipcim="172.16.0.29";
-
+const IP = require('./ipcim.js');
 
 export default class Kereses extends Component {
   constructor(props) {
@@ -25,7 +24,7 @@ export default class Kereses extends Component {
   
   
   componentDidMount(){
-     fetch('http://'+ipcim+':3000/mufajok')
+     fetch('http://'+IP.ipcim+'/mufajok')
       .then((response) => response.json())
       .then((responseJson) => {
 
@@ -45,7 +44,7 @@ export default class Kereses extends Component {
   
 
 
-     fetch('http://'+ipcim+':3000/filmek')
+     fetch('http:/'+IP.ipcim+'/filmek')
       .then((response) => response.json())
       .then((responseJson) => {
 
@@ -70,7 +69,7 @@ export default class Kereses extends Component {
     let bemenet={
       bevitel2:szam
     }
-    return fetch('http://'+ipcim+':3000/filmszures', {
+    return fetch('http://'+IP.ipcim+'/filmszures', {
       method: "POST",
       body: JSON.stringify(bemenet),
       headers: {"Content-type": "application/json; charset=UTF-8"}
@@ -99,7 +98,7 @@ export default class Kereses extends Component {
 
 
      }
-     fetch('http://'+ipcim+':3000/filmkereses', {
+     fetch('http://'+IP.ipcim+'/filmkereses', {
       method: "POST",
       body: JSON.stringify(bemenet),
       headers: {"Content-type": "application/json; charset=UTF-8"}
@@ -125,7 +124,7 @@ export default class Kereses extends Component {
    
   osszes= async() =>
   {
-    fetch('http://'+ipcim+':3000/filmek')
+    fetch('http://'+IP.ipcim+'/filmek')
       .then((response) => response.json())
       .then((responseJson) => {
 
@@ -150,7 +149,7 @@ export default class Kereses extends Component {
     let bemenet={
       bevitel1:itemValue
     }
-    return fetch('http://'+ipcim+':3000/evszures', {
+    return fetch('http://'+IP.ipcim+'/evszures', {
       method: "POST",
       body: JSON.stringify(bemenet),
       headers: {"Content-type": "application/json; charset=UTF-8"}
@@ -254,7 +253,7 @@ export default class Kereses extends Component {
             filmmufaj:item.mufaj_nev
             })}>
             <Image 
-            source={{uri:'http://172.16.0.29:3000/'+item.film_kep}}
+            source={{uri:'http://'+IP.ipcim+'/'+item.film_kep}}
             style={{width:150,height:230,marginRight:10,marginTop:10,marginLeft:10,borderRadius:15}}
             />
             <Text style={{color:"white",marginLeft:15,marginTop:5,fontSize:16,fontWeight:"bold",width:155}}>{item.film_cim}</Text>
